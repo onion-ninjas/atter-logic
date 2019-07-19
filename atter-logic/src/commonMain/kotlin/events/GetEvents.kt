@@ -2,14 +2,16 @@ package events
 
 import kotlin.random.Random
 
-class GetEvents {
+internal var events = (1..100).map {
+    Event(
+        id = "$it",
+        name = "Event $it",
+        attendeesCount = Random.nextInt(),
+        eventDate = "DateTime.now"
+    )
+}
+    .toMutableList()
 
-    operator fun invoke() = (1..100).map {
-        Event(
-            id = "$it",
-            name = "Event $it",
-            attendeesCount = Random.nextInt(),
-            eventDate = "DateTime.now"
-        )
-    }
+class GetEvents {
+    operator fun invoke(): List<Event> = events
 }
