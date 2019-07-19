@@ -1,4 +1,4 @@
-package events
+package com.attendance.checker.events
 
 
 data class Event(

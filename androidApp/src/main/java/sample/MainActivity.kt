@@ -3,7 +3,7 @@ package sample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import events.GetEvents
+import com.attendance.checker.events.GetEvents
 import sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
