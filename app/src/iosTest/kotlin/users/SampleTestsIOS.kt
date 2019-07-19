@@ -1,11 +1,11 @@
-package sample
+package users
 
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class SampleTestsAndroid {
+class SampleTestsIOS {
     @Test
     fun testHello() {
-        assertTrue("Android" in hello())
+        assertTrue("iOS" in hello())
     }
 }

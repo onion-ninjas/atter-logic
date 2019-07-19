@@ -1,4 +1,4 @@
-package sample
+package users
 
 import kotlin.test.Test
 import kotlin.test.assertTrue

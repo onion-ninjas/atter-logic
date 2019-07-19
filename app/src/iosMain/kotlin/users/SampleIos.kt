@@ -1,4 +1,4 @@
-package sample
+package users
 
 actual class Sample {
     actual fun checkMe() = 7
