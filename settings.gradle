@@ -1,4 +1,3 @@
 rootProject.name = 'attendance_multiplatform'
 
-include ':atter-logic'
-enableFeaturePreview('GRADLE_METADATA')
+include ':atter-logic', ":androidApp"

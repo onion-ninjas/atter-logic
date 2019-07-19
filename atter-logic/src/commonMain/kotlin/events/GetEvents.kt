@@ -1,7 +1,5 @@
 package events
 
-import com.soywiz.klock.DateTime
-
 import kotlin.random.Random
 
 class GetEvents {
@@ -11,7 +9,7 @@ class GetEvents {
             id = "$it",
             name = "Event $it",
             attendeesCount = Random.nextInt(),
-            eventDate = DateTime.now()
+            eventDate = "DateTime.now"
         )
     }
 }
