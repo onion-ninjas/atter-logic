@@ -85,8 +85,8 @@ tasks.register("copyFramework") {
         copy {
             from srcFile.parent
             into targetDir
-            include 'app.framework/**'
-            include 'app.framework.dSYM'
+            include 'atter-logic.framework/**'
+            include 'atter-logic.framework.dSYM'
         }
     }
 }
