@@ -1,10 +1,11 @@
 import UIKit
-import app
+import atter_logic
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.text = "hej"
+        let events = GetEvents().invoke()
+        label.text = events.first?.name
         
     }
 
