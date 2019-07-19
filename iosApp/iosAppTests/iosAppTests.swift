@@ -1,5 +1,7 @@
 import XCTest
-import app
+
+@testable import iosApp
+import atter_logic
 
 class iosAppTests: XCTestCase {
     func testExample() {
