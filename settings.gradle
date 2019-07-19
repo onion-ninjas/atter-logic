@@ -1,0 +1,3 @@
+rootProject.name = 'attendance_multiplatform'
+
+include ':app'
