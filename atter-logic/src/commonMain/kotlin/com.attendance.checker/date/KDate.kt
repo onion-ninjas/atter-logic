@@ -1,4 +1,4 @@
-package date
+package com.attendance.checker.date
 
 expect class KDate {
 

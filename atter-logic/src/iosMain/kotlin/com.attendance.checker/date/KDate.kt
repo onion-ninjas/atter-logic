@@ -1,4 +1,4 @@
-package date
+package com.attendance.checker.date
 
 import platform.Foundation.NSDate
 import platform.Foundation.NSISO8601DateFormatter

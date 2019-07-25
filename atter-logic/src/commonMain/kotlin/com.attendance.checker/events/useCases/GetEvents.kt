@@ -1,6 +1,6 @@
 package com.attendance.checker.events
 
-import date.KDate
+import com.attendance.checker.date.KDate
 import kotlin.random.Random
 
 internal var events = (1..100).map {
@@ -14,7 +14,6 @@ internal var events = (1..100).map {
     .toMutableList()
 
 class GetEvents {
-
     operator fun invoke(): List<Event> =
         events
 }

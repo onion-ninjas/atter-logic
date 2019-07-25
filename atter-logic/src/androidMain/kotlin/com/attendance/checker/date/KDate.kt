@@ -1,4 +1,4 @@
-package date
+package com.attendance.checker.date
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
