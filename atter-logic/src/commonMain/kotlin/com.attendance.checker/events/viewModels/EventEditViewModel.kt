@@ -9,7 +9,7 @@ import com.attendance.checker.uuid.KUUID
 
 class EventEditViewModel constructor(val presenter: EventEditPresenter, var newEventUseCase: SaveEvent, val event: Event? = null): ViewModel {
 
-    private var name: String? = null
+    private var name: String?
     private var date: KDate
 
     companion object {
@@ -24,7 +24,7 @@ class EventEditViewModel constructor(val presenter: EventEditPresenter, var newE
     override fun onStart() {
         refreshSaveButtonStatus()
         presenter.displayName(name)
-        presenter.displayDate(date?.isoDate)
+        presenter.displayDate(date.isoDate)
     }
 
     fun didChangeName(name: String) {

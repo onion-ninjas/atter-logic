@@ -8,6 +8,7 @@ import com.attendance.checker.shared.viewModels.ViewModel
 class EventListViewModel constructor(val presenter: EventListPresenter, val getEventUseCase: GetEvents): ViewModel {
 
     var events: List<Event> = listOf()
+        private set
 
     companion object {
         fun instance(presenter: EventListPresenter) = EventListViewModel(presenter, GetEvents())
