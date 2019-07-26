@@ -7,7 +7,9 @@ import com.attendance.checker.events.presenters.EventEditPresenter
 import com.attendance.checker.shared.viewModels.ViewModel
 import com.attendance.checker.uuid.KUUID
 
-class EventEditViewModel constructor(val presenter: EventEditPresenter, var newEventUseCase: SaveEvent, val event: Event? = null): ViewModel {
+class EventEditViewModel constructor(private val presenter: EventEditPresenter,
+                                     private var newEventUseCase: SaveEvent,
+                                     private val event: Event? = null): ViewModel {
 
     private var name: String?
     private var date: KDate
