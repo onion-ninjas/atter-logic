@@ -6,7 +6,7 @@ import com.attendance.checker.events.presenters.EventListPresenter
 import com.attendance.checker.shared.viewModels.ViewModel
 
 class EventListViewModel constructor(private val presenter: EventListPresenter,
-                                     private  val getEventUseCase: GetEvents): ViewModel {
+                                     private val getEventUseCase: GetEvents): ViewModel {
 
     var events: List<Event> = listOf()
         private set
