@@ -3,62 +3,46 @@ package com.attendance.checker.events.viewModels
 import com.attendance.checker.date.KDate
 import com.attendance.checker.events.Event
 import com.attendance.checker.events.SaveEvent
-import com.attendance.checker.events.presenters.EventEditPresenter
-import com.attendance.checker.shared.viewModels.ViewModel
+import com.attendance.checker.shared.viewModels.Consumable
+import com.attendance.checker.shared.viewModels.toConsumable
 import com.attendance.checker.uuid.KUUID
+import com.github.florent37.livedata.KMutableLiveData
+import com.github.florent37.livedata.map
 
-class EventEditViewModel constructor(private val presenter: EventEditPresenter,
-                                     private var newEventUseCase: SaveEvent,
-                                     private val event: Event? = null): ViewModel {
+class EventEditViewModel constructor(
+    private var newEventUseCase: SaveEvent,
+    private val event: Event? = null
+) {
 
-    private var name: String?
-    private var date: KDate
+    private val name = KMutableLiveData<String>()
+    private val date = KMutableLiveData<KDate>()
+    private val saveButtonEnabled = name.map {
+        it.length > 2
+    }
+    private val navigation = KMutableLiveData<Consumable<Navigation>>()
 
     companion object {
-        fun instance(presenter: EventEditPresenter, event: Event?) = EventEditViewModel(presenter, SaveEvent(), event)
+        fun instance(event: Event?) =
+            EventEditViewModel(SaveEvent(), event)
     }
 
     init {
-        name = event?.name
-        date = event?.eventDate ?: KDate.now()
-    }
-
-    override fun onStart() {
-        refreshSaveButtonStatus()
-        presenter.displayName(name)
-        presenter.displayDate(date.isoDate)
-    }
-
-    fun didChangeName(name: String) {
-        this.name = name
-
-        refreshSaveButtonStatus()
-    }
-
-    fun didChangeDate(date: KDate) {
-        this.date = date
-
-        presenter.displayDate(date.isoDate)
-        refreshSaveButtonStatus()
+        name.value = event?.name
+        date.value = event?.eventDate ?: KDate.now()
     }
 
     fun save() {
-        val name = this.name ?: return
+        val name = this.name.value ?: return
+        val date = this.date.value ?: return
         val id = event?.id ?: KUUID().uuidString
 
         val event = Event(id, name, date, 0)
-        val saved = newEventUseCase.save(event)
+        val saved = newEventUseCase.save(event) ?: return
 
-        if (saved != null) {
-            presenter.dismiss()
-        }
+        navigation.value = Navigation.Dismiss.toConsumable()
     }
 
-    private fun refreshSaveButtonStatus() {
-        val nameValidated = (name?.length ?: 0) > 2
-        //TODO: other validations
-
-        val enabled = nameValidated
-        presenter.setSaveButton(enabled)
+    sealed class Navigation {
+        object Dismiss : Navigation()
     }
 }

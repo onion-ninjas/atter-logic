@@ -2,26 +2,36 @@ package com.attendance.checker.events.viewModels
 
 import com.attendance.checker.events.Event
 import com.attendance.checker.events.GetEvents
-import com.attendance.checker.events.presenters.EventListPresenter
-import com.attendance.checker.shared.viewModels.ViewModel
+import com.attendance.checker.shared.viewModels.Consumable
+import com.attendance.checker.shared.viewModels.toConsumable
+import com.github.florent37.livedata.KMutableLiveData
 
-class EventListViewModel constructor(private val presenter: EventListPresenter,
-                                     private val getEventUseCase: GetEvents): ViewModel {
+class EventListViewModel(
+    private val getEventUseCase: GetEvents
+) {
 
-    var events: List<Event> = listOf()
-        private set
+    val events = KMutableLiveData<List<Event>>()
+    val navigation = KMutableLiveData<Consumable<Navigation>>()
 
     companion object {
-        fun instance(presenter: EventListPresenter) = EventListViewModel(presenter, GetEvents())
+        fun instance() = EventListViewModel(GetEvents())
+    }
+
+    init {
+        events.value = getEventUseCase()
     }
 
     fun refresh() {
-        events = getEventUseCase()
-        presenter.reloadList()
+        events.value = getEventUseCase()
     }
 
     fun didSelectRowAt(index: Int) {
-        val event = events[index]
-        presenter.navigateTo(event)
+        val event = events.value?.get(index) ?: return
+
+        navigation.value = Navigation.NavigateTo(event = event).toConsumable()
+    }
+
+    sealed class Navigation {
+        data class NavigateTo(val event: Event): Navigation()
     }
 }

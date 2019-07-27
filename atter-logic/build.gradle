@@ -1,10 +1,5 @@
 apply plugin: 'kotlin-multiplatform'
 
-repositories {
-    google()
-    jcenter()
-}
-
 kotlin {
     targets {
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
@@ -20,11 +15,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            implementation "com.github.florent37:multiplatform-livedata:0.0.5"
         }
-
         androidMain.dependencies {
-            api 'org.jetbrains.kotlin:kotlin-stdlib'
+            implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+            implementation "com.github.florent37:multiplatform-livedata-android:0.0.5"
+        }
+        iosMain.dependencies {
+            implementation "com.github.florent37:multiplatform-livedata-ios:0.0.5"
         }
     }
 }

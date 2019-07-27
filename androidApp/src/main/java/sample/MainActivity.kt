@@ -9,7 +9,7 @@ import com.attendance.checker.events.presenters.EventListPresenter
 import com.attendance.checker.events.viewModels.EventListViewModel
 import sample.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), EventListPresenter {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: EventListViewModel
@@ -23,13 +23,5 @@ class MainActivity : AppCompatActivity(), EventListPresenter {
 
         viewModel = EventListViewModel.instance(this)
         viewModel.refresh()
-    }
-
-    override fun reloadList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun navigateTo(event: Event) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
