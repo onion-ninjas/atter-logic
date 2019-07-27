@@ -1,6 +1,6 @@
 package com.attendance.checker.events
 
-import date.KDate
+import com.soywiz.klock.DateTime
 import kotlin.random.Random
 
 internal var events = (1..100).map {
@@ -8,7 +8,7 @@ internal var events = (1..100).map {
         id = "$it",
         name = "Event $it",
         attendeesCount = Random.nextInt(0, 100),
-        eventDate = KDate.now()
+        eventDate = DateTime.now()
     )
 }
     .toMutableList()

@@ -3,6 +3,7 @@ apply plugin: 'kotlin-multiplatform'
 repositories {
     google()
     jcenter()
+    maven { url "https://dl.bintray.com/korlibs/korlibs" }
 }
 
 kotlin {
@@ -19,12 +20,22 @@ kotlin {
     }
 
     sourceSets {
+        def klockVersion = "1.5.0"
         commonMain.dependencies {
-            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            implementation "com.soywiz.korlibs.klock:klock:$klockVersion"
         }
 
         androidMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
+            api "com.soywiz.korlibs.klock:klock-android:$klockVersion"
+        }
+        iosMain.dependencies {
+            if (System.getenv('SDK_NAME')?.startsWith("iphoneos")){
+                implementation "com.soywiz.korlibs.klock:klock-iosx64:$klockVersion"
+            } else {
+                implementation "com.soywiz.korlibs.klock:klock-iosarm64:$klockVersion"
+            }
         }
     }
 }
