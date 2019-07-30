@@ -11,8 +11,17 @@ class EventEditViewModel constructor(private val presenter: EventEditPresenter,
                                      private var newEventUseCase: SaveEvent,
                                      private val event: Event? = null): ViewModel {
 
-    private var name: String?
-    private var date: KDate
+    private var name: String? = null
+        set(value) {
+            field = value
+            refreshSaveButtonStatus()
+        }
+
+    private var date: KDate = KDate.now()
+        set(value) {
+            field = value
+            refreshSaveButtonStatus()
+        }
 
     companion object {
         fun instance(presenter: EventEditPresenter, event: Event?) = EventEditViewModel(presenter, SaveEvent(), event)
@@ -26,7 +35,7 @@ class EventEditViewModel constructor(private val presenter: EventEditPresenter,
     override fun onStart() {
         refreshSaveButtonStatus()
         presenter.displayName(name)
-        presenter.displayDate(date.isoDate)
+        presenter.displayDate(date)
     }
 
     fun didChangeName(name: String) {
@@ -38,8 +47,7 @@ class EventEditViewModel constructor(private val presenter: EventEditPresenter,
     fun didChangeDate(date: KDate) {
         this.date = date
 
-        presenter.displayDate(date.isoDate)
-        refreshSaveButtonStatus()
+        presenter.displayDate(date)
     }
 
     fun save() {
