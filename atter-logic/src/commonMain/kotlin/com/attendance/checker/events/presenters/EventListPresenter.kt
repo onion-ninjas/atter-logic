@@ -1,6 +1,6 @@
 package com.attendance.checker.events.presenters
 
-import com.attendance.checker.events.Event
+import com.attendance.checker.events.models.Event
 
 interface EventListPresenter {
     fun reloadList()

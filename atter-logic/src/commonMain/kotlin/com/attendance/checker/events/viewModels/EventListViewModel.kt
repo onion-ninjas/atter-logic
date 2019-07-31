@@ -1,7 +1,7 @@
 package com.attendance.checker.events.viewModels
 
-import com.attendance.checker.events.Event
-import com.attendance.checker.events.GetEvents
+import com.attendance.checker.events.models.Event
+import com.attendance.checker.events.useCases.GetEvents
 import com.attendance.checker.events.presenters.EventListPresenter
 import com.attendance.checker.shared.viewModels.ViewModel
 

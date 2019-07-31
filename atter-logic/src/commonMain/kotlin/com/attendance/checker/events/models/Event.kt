@@ -1,4 +1,4 @@
-package com.attendance.checker.events
+package com.attendance.checker.events.models
 
 import com.attendance.checker.date.KDate
 

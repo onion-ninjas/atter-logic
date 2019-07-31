@@ -1,8 +1,8 @@
 package com.attendance.checker.events.viewModels
 
 import com.attendance.checker.date.KDate
-import com.attendance.checker.events.Event
-import com.attendance.checker.events.SaveEvent
+import com.attendance.checker.events.models.Event
+import com.attendance.checker.events.useCases.SaveEvent
 import com.attendance.checker.events.presenters.EventEditPresenter
 import com.attendance.checker.shared.viewModels.ViewModel
 import com.attendance.checker.uuid.KUUID
@@ -52,7 +52,7 @@ class EventEditViewModel constructor(private val presenter: EventEditPresenter,
 
     fun save() {
         val name = this.name ?: return
-        val id = event?.id ?: KUUID().uuidString
+        val id = event?.id ?: KUUID.new().uuidString
 
         val event = Event(id, name, date, 0)
         val saved = newEventUseCase.save(event)
@@ -63,7 +63,7 @@ class EventEditViewModel constructor(private val presenter: EventEditPresenter,
     }
 
     private fun refreshSaveButtonStatus() {
-        val nameValidated = (name?.length ?: 0) > 2
+        val nameValidated = name?.length ?: 0 > 2
         //TODO: other validations
 
         val enabled = nameValidated
