@@ -3,8 +3,8 @@ package sample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.attendance.checker.events.Event
-import com.attendance.checker.events.GetEvents
+import com.attendance.checker.events.models.Event
+import com.attendance.checker.events.useCases.GetEvents
 import com.attendance.checker.events.presenters.EventListPresenter
 import com.attendance.checker.events.viewModels.EventListViewModel
 import sample.databinding.ActivityMainBinding
