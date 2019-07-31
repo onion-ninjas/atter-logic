@@ -1,6 +1,6 @@
-package com.attendance.checker.events
+package com.attendance.checker.events.models
 
-import date.KDate
+import com.attendance.checker.date.KDate
 
 data class Event(
     val id: String,

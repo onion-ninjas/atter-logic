@@ -1,9 +1,9 @@
-package date
+package com.attendance.checker.date
 
 import platform.Foundation.NSDate
 import platform.Foundation.NSISO8601DateFormatter
 
-actual class KDate(val date: NSDate) {
+actual class KDate constructor(val date: NSDate) {
 
     actual val isoDate: String
 

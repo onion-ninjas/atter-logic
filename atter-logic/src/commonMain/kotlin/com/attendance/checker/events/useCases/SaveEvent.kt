@@ -1,4 +1,6 @@
-package com.attendance.checker.events
+package com.attendance.checker.events.useCases
+
+import com.attendance.checker.events.models.Event
 
 class SaveEvent {
     fun save(event: Event): Event? {
