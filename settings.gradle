@@ -1,3 +1,5 @@
 rootProject.name = 'attendance_multiplatform'
 
+include 'com.squareup.sqldelight'
 include ':atter-logic', ':androidApp'
+enableFeaturePreview('GRADLE_METADATA')

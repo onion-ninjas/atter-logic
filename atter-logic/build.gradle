@@ -4,6 +4,7 @@ apply plugin: 'atter-quality'
 repositories {
     google()
     jcenter()
+    mavenCentral()
 }
 
 kotlin {
@@ -18,15 +19,25 @@ kotlin {
 
         fromPreset(presets.jvm, 'android')
     }
-
     sourceSets {
         commonMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            implementation "com.squareup.sqldelight:sqlite-driver:1.1.4"
         }
 
         androidMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
         }
+    }
+}
+
+apply plugin: 'com.squareup.sqldelight'
+
+sqldelight {
+    AtterDatabase {
+        packageName = "com.attendance.checker"
+        sourceFolders = ["sqldelight"]
+        schemaOutputDirectory = file("src/main/sqldelight/migrations")
     }
 }
 

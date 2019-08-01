@@ -16,6 +16,5 @@ internal var events = (1..100).map {
     .toMutableList()
 
 class GetEvents {
-    operator fun invoke(): List<Event> =
-        events
+    operator fun invoke(): List<Event> = events
 }

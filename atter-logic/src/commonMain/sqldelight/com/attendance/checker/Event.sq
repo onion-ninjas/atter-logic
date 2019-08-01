@@ -1,0 +1,15 @@
+import com.attendance.checker.date.KDate;
+
+CREATE TABLE event (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE,
+  date INTEGER AS KDate NOT NULL
+);
+
+insertEvent:
+INSERT INTO event(name, date)
+VALUES (?, ?);
+
+selectAll:
+SELECT *
+FROM event;
