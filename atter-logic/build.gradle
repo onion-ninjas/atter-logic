@@ -1,5 +1,15 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'atter-quality'
+apply plugin: 'com.squareup.sqldelight'
+
+sqldelight {
+    AtterDatabase {
+        packageName = "com.attendance.checker"
+        sourceFolders = ["sqldelight"]
+        schemaOutputDirectory = file("sqldelight")
+    }
+    linkSqlite = true
+}
 
 repositories {
     google()
@@ -31,16 +41,6 @@ kotlin {
     }
 }
 
-apply plugin: 'com.squareup.sqldelight'
-
-sqldelight {
-    AtterDatabase {
-        packageName = "com.attendance.checker"
-        sourceFolders = ["sqldelight"]
-        schemaOutputDirectory = file("src/main/sqldelight/migrations")
-    }
-}
-
 // workaround for https://youtrack.jetbrains.com/issue/KT-27170
 configurations {
     compileClasspath
@@ -64,6 +64,7 @@ tasks.register("packForXCode", Sync) {
         }
     }
 }
+
 tasks.named("build") {
     dependsOn("packForXCode")
 }

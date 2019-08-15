@@ -1,5 +1,7 @@
 package com.attendance.checker.date
 
+import com.squareup.sqldelight.ColumnAdapter
+
 expect class KDate {
 
     val isoDate: String
@@ -8,3 +10,5 @@ expect class KDate {
         fun now(): KDate
     }
 }
+
+expect class KDateAdapter() : ColumnAdapter<KDate, String>
